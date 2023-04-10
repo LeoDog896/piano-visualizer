@@ -36,9 +36,13 @@
     }}></button>
 {/each}
 
-<style>
+<style lang="scss">
+    :root {
+        --width: 2rem;
+    }
+
     button {
-        width: 3rem;
+        width: var(--width);
         height: 10rem;
         border: 1px solid black;
         margin: 0;
@@ -49,8 +53,8 @@
         background-color: black;
         color: white;
         height: 5rem;
-        width: 1.5rem;
-        margin-left: -1.5rem;
+        width: calc(var(--width) / 2);
+        margin-left: calc(var(--width) / -2);
         margin-top: -10rem;
         transform: translateX(50%) translateY(-50%);
     }
