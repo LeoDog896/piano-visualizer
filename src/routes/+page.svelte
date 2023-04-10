@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Piano from '$lib/Piano.svelte';
     import * as midiManager from 'midi-file';
 
     let files: FileList | undefined;
@@ -14,8 +15,6 @@
             ? new Uint8Array([...array].map((c) => c.charCodeAt(0)))
             : new Uint8Array(array);
         midi = midiManager.parseMidi(parsedArray);
-
-        console.log(midi);
     }
 
     $: if (files && files.length > 0) {
@@ -24,6 +23,8 @@
         reader.readAsArrayBuffer(files[0]);
     }
 </script>
+
+<Piano></Piano>
 
 <input type="file" accept=".mid" bind:files={files} />
 
