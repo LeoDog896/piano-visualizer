@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-    import type { Piano } from '@tonejs/piano/src/index';
-    import { EventEmitter } from 'events';
+    import * as Tone from 'tone'
 
-    let piano: Piano
+    let tone: Tone.Synth
 
     const notes = [
         'A0', 'A#0', 'B0',
@@ -18,23 +17,42 @@
     ]
 
     onMount(async () => {
-        window.EventEmitter = EventEmitter
-        
-        const { Piano } = await import('@tonejs/piano/src/index')
+        tone = new Tone.Synth().toDestination()
 
-        piano = new Piano({
-            velocities: 5
-        })
+        tone.oscillator.type = "sine";
 
-        piano.toDestination()
-
-        piano.load()
+        await Tone.start()
     })
 </script>
 
 {#each notes as note}
-    <button on:click={() => {
-        piano.keyDown({ note })
-        piano.keyUp({ note, time: "+1" })
+    <button class="{note.includes('#') ? 'black' : 'white'}"
+    on:click={() => {
+        tone.triggerAttackRelease(note, '8n')
     }}>{note}</button>
 {/each}
+
+<style>
+    button {
+        width: 40px;
+        height: 50px;
+        border: 1px solid black;
+        border-radius: 5px;
+        background-color: white;
+        color: black;
+        font-size: 12px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .black {
+        background-color: black;
+        color: white;
+    }
+
+    .white {
+        background-color: white;
+        color: black;
+        height: 100px;
+    }
+</style>
