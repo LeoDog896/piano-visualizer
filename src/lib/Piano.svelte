@@ -6,7 +6,7 @@
 	let container: HTMLDivElement;
 
 	export let octaves = [0, 1, 2, 3, 4, 5, 6, 7];
-    export let markers: 'octaves' | 'notes' | 'none' = 'octaves';
+	export let markers: 'octaves' | 'notes' | 'none' = 'octaves';
 
 	const notes = [
 		['A0', 'A#0', 'B0'],
@@ -42,16 +42,16 @@
 				tone.triggerAttackRelease(note, '8n');
 			}}
 		>
-            {#if markers == "notes"}
-                {#if note.includes('#')}
-                    <span>{note.replace('#', '♯').replace(/\d/, '')}</span><br />
-                    <span>{note.slice(-1)}</span>
-                {:else}
-                    <span>{note}</span>
-                {/if}
-            {:else if markers == "octaves" && note.match(/C\d/)}
-                <span>C{note.slice(-1)}</span>
-            {/if}
+			{#if markers == 'notes'}
+				{#if note.includes('#')}
+					<span>{note.replace('#', '♯').replace(/\d/, '')}</span><br />
+					<span>{note.slice(-1)}</span>
+				{:else}
+					<span>{note}</span>
+				{/if}
+			{:else if markers == 'octaves' && note.match(/C\d/)}
+				<span>C{note.slice(-1)}</span>
+			{/if}
 		</button>
 	{/each}
 </div>
@@ -62,21 +62,21 @@
 		--width: calc(100% / var(--non-sharp-notes));
 	}
 
-    span {
-        position: absolute;
-        bottom: 0;
-        transform: translate(-50%, -50%);
-    }
+	span {
+		position: absolute;
+		bottom: 0;
+		transform: translate(-50%, -50%);
+	}
 
 	button {
-        position: relative;
+		position: relative;
 		width: var(--width);
 		height: 10rem;
 		margin: 0;
 		padding: 0;
-        text-align: center;
+		text-align: center;
 		overflow-wrap: break-word;
-        transition: all 0.1s ease-in-out;
+		transition: all 0.1s ease-in-out;
 	}
 
 	button.white {
@@ -101,7 +101,7 @@
 		box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.2) inset,
 			0 -5px 2px 3px rgba(0, 0, 0, 0.6) inset, 0 2px 4px rgba(0, 0, 0, 0.5);
 		background: linear-gradient(45deg, #222 0%, #555 100%);
-        z-index: 1;
+		z-index: 1;
 	}
 
 	.black:active {

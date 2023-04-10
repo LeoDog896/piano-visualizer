@@ -25,7 +25,9 @@
 	}
 </script>
 
-<Piano />
+<div>
+	<Piano />
+</div>
 
 <br />
 
@@ -40,3 +42,13 @@
 {#if midi}
 	<p>{midi.header}</p>
 {/if}
+
+<style>
+	/* move piano to bottom of page */
+	div {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+</style>
