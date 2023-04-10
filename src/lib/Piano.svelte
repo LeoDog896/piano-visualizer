@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-    import { Piano } from '@tonejs/piano/build/piano/Piano';
+    import type { Piano } from '@tonejs/piano/src/index';
+    import { EventEmitter } from 'events';
 
     let piano: Piano
 
@@ -16,15 +17,24 @@
         'C8'
     ]
 
-    onMount(() => {
+    onMount(async () => {
+        window.EventEmitter = EventEmitter
+        
+        const { Piano } = await import('@tonejs/piano/src/index')
+
         piano = new Piano({
             velocities: 5
         })
 
         piano.toDestination()
+
+        piano.load()
     })
 </script>
 
 {#each notes as note}
-    <button on:click={() => piano.keyDown(note)}>{note}</button>
+    <button on:click={() => {
+        piano.keyDown({ note })
+        piano.keyUp({ note, time: "+1" })
+    }}>{note}</button>
 {/each}
