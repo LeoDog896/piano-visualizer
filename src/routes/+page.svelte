@@ -26,6 +26,8 @@
 
 <Piano></Piano>
 
+<br/>
+
 <input type="file" accept=".mid" bind:files={files} />
 
 {#if files}
