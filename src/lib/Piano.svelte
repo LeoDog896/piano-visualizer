@@ -29,30 +29,25 @@
     <button class="{note.includes('#') ? 'black' : 'white'}"
     on:click={() => {
         tone.triggerAttackRelease(note, '8n')
-    }}>{note}</button>
+    }}></button>
 {/each}
 
 <style>
     button {
-        width: 40px;
-        height: 50px;
+        width: 3rem;
+        height: 10rem;
         border: 1px solid black;
-        border-radius: 5px;
-        background-color: white;
-        color: black;
-        font-size: 12px;
-        font-weight: bold;
-        cursor: pointer;
+        margin: 0;
+        padding: 0;
     }
 
-    .black {
+    button.black {
         background-color: black;
         color: white;
-    }
-
-    .white {
-        background-color: white;
-        color: black;
-        height: 100px;
+        height: 5rem;
+        width: 1.5rem;
+        margin-left: -1.5rem;
+        margin-top: -10rem;
+        transform: translateX(50%) translateY(-50%);
     }
 </style>
