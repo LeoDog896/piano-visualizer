@@ -1,29 +1,31 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Canvas, Layer, t, type Render } from 'svelte-canvas';
-
-    let width: number = 640;
-    let height: number = 640;
-
-    let render: Render;
-	$: render = ({ context, width, height }) => {
-		context.fillStyle = `hsl(${$t / 40}, 100%, 50%)`;
-		context.beginPath();
-		context.arc(($t / 4) % width, ($t / 4) % height, 100, 0, Math.PI * 2);
-		context.fill();
-	};
-
-    onMount(() => {
-        window.addEventListener('resize', () => {
-            width = window.innerWidth;
-            height = window.innerHeight;
-        });
-
-        width = window.innerWidth;
-        height = window.innerHeight;
-    });
+	import Piano from './Piano.svelte';
+    import VisualizerRender from './VisualizerRender.svelte';
 </script>
 
-<Canvas {width} {height}>
-	<Layer {render} />
-</Canvas>
+<div class="container">
+    <div class="render">
+        <VisualizerRender></VisualizerRender>
+    </div>
+    <div class="piano">
+        <Piano></Piano>
+    </div>
+</div>
+
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
+
+    .render {
+        flex: 1;
+    }
+
+    .piano {
+        flex: 0;
+    }
+</style>

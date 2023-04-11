@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Piano from '$lib/Piano.svelte';
+	import Visualizer from '$lib/Visualizer.svelte';
 	import * as midiManager from 'midi-file';
 
 	let files: FileList | undefined;
@@ -26,7 +26,7 @@
 </script>
 
 <div>
-	<Piano />
+	<Visualizer />
 </div>
 
 <br />
@@ -50,5 +50,6 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
+		top: 0;
 	}
 </style>
