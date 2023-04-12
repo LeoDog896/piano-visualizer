@@ -34,10 +34,10 @@
 
             const [fromY, toY] = [timeStart, timeEnd].map(time => {
                 if (time === undefined) {
-                    return height;
+                    return 0;
                 }
 
-                return time / startTime * height;
+                return height - (time / startTime) * height;
             });
 
             context.beginPath();
